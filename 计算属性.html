@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算属性</title>
+</head>
+
+<body>
+  <div id="app">
+    {{reversedText}}
+
+    <div>
+      总价：{{ prices }}
+    </div>
+    <div>
+      姓名：{{fullName}}
+    </div>
+
+  </div>
+
+
+
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        text: "123,456",
+        package1: [{
+            name: "iphoneX",
+            price: 9000,
+            count: 10
+          },
+          {
+            name: "ipad",
+            price: 3000,
+            count: 1
+          }
+        ],
+        package2: [{
+            name: "apple",
+            price: 20,
+            count: 5
+          },
+          {
+            name: "banana",
+            price: 2,
+            count: 8
+          }
+        ],
+        firstName: "Jack",
+        lastName: "Green"
+      },
+      computed: {
+        reversedText: function () {
+          return this.text.split(",").reverse().join(",");
+        },
+        prices: function () {
+          var prices = 0;
+          console.log(111)
+          for (var i = 0; i < this.package1.length; i++) {
+            console.log(this.package1[i])
+            prices += this.package1[i].price * this.package1[i].count;
+          }
+          for (var i = 0; i < this.package2.length; i++) {
+            prices += this.package2[i].price * this.package2[i].count;
+          }
+          return prices;
+        },
+        fullName: {
+          get: function () {
+            return this.firstName + " " + this.lastName;
+          },
+          set: function (newValue) {
+            var names = newValue.split(" ");
+            this.firstName = name[0];
+            this.lastName = name[names.length - 1];
+          }
+        }
+      }
+    })
+    // app.fullName = ("Ming Pan")
+  </script>
+
+
+</body>
+
+</html>

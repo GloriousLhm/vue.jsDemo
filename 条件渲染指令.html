@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <!-- <p v-if="status===1">当status=1时显示这一行</p>
+    <p v-else-if="status===2">当status=1时显示这一行</p>
+    <p v-else>否则显示该行</p> -->
+    <template v-if="type === 'name'">
+      <label>用户名：</label>
+      <input placeholder="请输入用户名" key="name-input">
+    </template>
+    <template v-else>
+      <label>邮箱：</label>
+      <input placeholder="请输入邮箱" key="mail-input">
+    </template>
+    <button @click="handelToggleClick">切换输入类型</button>
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: "这是一段文本哈哈哈",
+        status: 2,
+        type: 'name',
+        msg: "ming"
+      },
+      methods: {
+        handelToggleClick: function () {
+          this.type = this.type === 'name' ? 'mail' : 'name'
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>

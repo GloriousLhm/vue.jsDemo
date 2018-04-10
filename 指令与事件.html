@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p v-if="show">显示这段文本</p>
+    <a :href="url">百度</a>
+    <!-- <button @click="click"></button>
+    <button @click="show=false" v-if="show">点击隐藏</button> -->
+  </div>
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        show: true,
+        url: 'http://www.baidu.com'
+      },
+      methods: {
+        init: function (text) {
+          console.log(text);
+        }
+      },
+      mounted: function () {
+        this.init('在初始化时调用');
+      }
+    })
+    app.init('通过外部调用')
+  </script>
+</body>
+
+</html>

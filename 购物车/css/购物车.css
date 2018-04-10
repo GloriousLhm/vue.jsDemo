@@ -1,0 +1,28 @@
+[v-cloak] {
+  display: none;
+}
+
+table {
+  border: 1px solid hotpink;
+  /* 合并单元格 */
+  border-collapse: collapse;
+  /* 设置相邻单元格的边框间的距离 */
+  border-spacing: 0;
+  /* 隐藏表格中空单元上的边框和背景 */
+  empty-cells: show;
+}
+
+th,
+td {
+  padding: 8px 16px;
+  text-align: center;
+  border: 1px solid #666;
+}
+
+th {
+  background: #f7f7f7;
+  color: #5c6b77;
+  font-weight: 600;
+  /* 规定段落中的文本不进行换行： */
+  white-space: nowrap;
+}

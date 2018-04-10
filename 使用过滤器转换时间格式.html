@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <p>hello World</p>
+    <p>{{book}}</p>
+    <p>{{date}}</p>
+    <span v-text="link"></span>
+    <br>
+    <span v-pre>{{这里的内容是不会被编译出来的}}</span>
+    <br>
+    <span v-html="link"></span>
+    <p>
+      {{number/10}} {{isOk?'确定':'取消'}} {{text.split(',').reverse().join(',')}}
+    </p>
+    <p>
+      {{date|formatDate}}
+    </p>
+  </div>
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var padDate = function (value) {
+      return value < 10 ? '0' + value : value;
+    }
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        a: 2,
+        book: "avak_pan",
+        date: new Date(),
+        link: '<a href="">这是一个连接</a>',
+        number: 100,
+        isOk: false,
+        text: '123,456'
+      },
+      created() {
+        console.log(this.a);
+        console.log(this.$el) //undefined
+      },
+      mounted() {
+        console.log(this.$el);
+        // 声明一个变量指向vue实例this,保证作用域一致
+        var that = this;
+        this.timer = setInterval(function () {
+          that.date = new Date();
+        }, 1000)
+      },
+      beforeDestroy() {
+        if (this.timer) {
+          // 在vue实例下销毁之前，清除我们的定时器
+          clearInterval(this.timer)
+        }
+      },
+      filters: {
+        formatDate: function (value) {
+          // 这里的value就是需要过滤的数据
+          var date = new Date(value);
+          var year = date.getFullYear();
+          var month = padDate(date.getMonth() + 1);
+          var day = padDate(date.getDate());
+          var hours = padDate(date.getHours());
+          var minutes = padDate(date.getMinutes());
+          var seconds = padDate(date.getSeconds());
+          // 将整理好的数据返回出去
+          return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

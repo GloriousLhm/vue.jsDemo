@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <ul>
+      <!-- <li v-for="(item,index) in items">{{index}}{{item.name}}</li> -->
+      <!-- <li v-for="(item,index) in items">{{item}}</li> -->
+      <template v-for="(item,index) in items">
+        <li>{{item.name}}</li>
+        <li>{{item.author}}</li>
+      </template>
+    </ul>
+    <!-- <span v-for="value in user">{{value}}</span> -->
+    <!-- <li v-for="(value,key,index) in user">{{index}} - {{key}} : {{value}}</li> -->
+
+    <span v-for="n in 10">{{n}}</span>
+
+  </div>
+
+
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        items: [{
+            name: '<金字塔>',
+            author: 'Ming'
+          },
+          {
+            name: '<格林童话学>',
+            author: 'Pan'
+          },
+          {
+            name: '<管理学>',
+            author: 'Min'
+          }
+        ],
+        user: {
+          name: 'panming',
+          gender: '男',
+          age: 27
+        }
+      }
+    })
+    // app.items.push({
+    //   name: 'css揭秘',
+    //   author: '名'
+    // })
+    // app.items = app.items.filter(function (item) {
+    //   return item.name.match(/学/)
+    // })
+    // Vue.set(app.items, 3, {
+    //   name: 'css揭秘',
+    //   author: '名'
+    // })
+
+    // this.$set(app.items, 3, {
+    //   name: 'vue',
+    //   author: '尤雨溪'
+    // })
+
+    // app.items.splice(3, 1 {
+    //   name: 'vue',
+    //   author: '尤雨溪'
+    // })
+
+    app.items.splice(3)
+  </script>
+</body>
+
+</html>

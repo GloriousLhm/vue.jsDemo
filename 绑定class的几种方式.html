@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active {
+      width: 200px;
+      height: 200px;
+      background-color: hotpink;
+    }
+
+    .error {
+      /* background-color: yellow; */
+      border: 10px solid red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <div :class="{'active':isActive,'error':isError}"></div> -->
+    <!-- <div :class="classes"></div> -->
+    <!-- <div :class="[isActive ? activeCls : '' , errorCls]"></div> -->
+    <div :class="[{'active':isActive}, errorCls]"></div>
+  </div>
+
+
+
+
+
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        isActive: true,
+        // isError: true,
+        // error: null
+        activeCls: 'active',
+        errorCls: 'error'
+      },
+      computed: {
+        classes: function () {
+          return {
+            active: this.isActive && !this.error,
+            'text-fail': this.error && this.error.type === 'fail'
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

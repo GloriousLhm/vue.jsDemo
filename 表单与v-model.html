@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>表单与v-model</title>
+</head>
+
+<body>
+  <div id="app">
++
+    <!-- 
+    <input type="text" name="" id="" v-model="msg" placeholder="输入。。。">
+    <textarea name="" id="" cols="30" rows="10" v-model="text"></textarea>
+    <p>输入的内容是：{{msg}}</p>
+    <p style="white-space:pre">{{text}}</p> -->
+    <!-- 
+    <input type="text" @input="handleInput" placeholder="输入。。">
+    <p style="white-space:pre">{{msg}}</p> -->
+    <!-- 
+    <input type="radio" name="" id="" :checked="picked">
+    <label for="">单选按钮</label> -->
+
+    <input type="radio" id="html" value="html" v-model="picked">
+    <label for="html">HTML</label>
+    <br>
+    <input type="radio" value="js" id="js" v-model="picked">
+    <label for="js">JS</label>
+    <br>
+    <input type="radio" value="css" id="css" v-model="picked">
+    <label for="css">CSS</label>
+    <br>
+    <p>您的选择是：{{picked}}</p>
+  </div>
+
+
+
+  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        msg: '',
+        text: '',
+        picked: 'js'
+      },
+      methods: +{
+        handleInput: function (e) {
+          console.log(e)
+          this.msg = e.target.value
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
