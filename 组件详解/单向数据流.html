@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单向数据表流</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <my-component :init-count="1"></my-component> -->
+
+
+
+    <my-component :width="100"></my-component>
+
+  </div>
+  <script src="../node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    // 情况1：父组件传递初始值过来，子组件将它作为初始值保存起来，在自己额作用域下可以随意的修改和使用
+    // Vue.component('my-component', {
+    //   props: ['initCount'],
+    //   template: '<div>{{count}}</div>',
+    //   data: function () {
+    //     return {
+    //       // 可以直接操作count避免直接操作initCount
+    //       count: this.initCount + 1
+    //     }
+    //   }
+    // })
+
+
+    // 情况2： prop作为需要被转变的原始值传入，这种情况使用计算属性
+
+    Vue.component('my-component', {
+      props: ['width'],
+      template: '<div :style="style">组件内容</div>',
+      computed: {
+        style: function () {
+          return {
+            width: this.width + 'px'
+          }
+        }
+      }
+
+    })
+
+
+
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        // initCount: 0
+      }
+    })
+  </script>
+</body>
+
+</html>

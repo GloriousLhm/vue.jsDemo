@@ -10,7 +10,6 @@
 
 <body>
   <div id="app">
-+
     <!-- 
     <input type="text" name="" id="" v-model="msg" placeholder="输入。。。">
     <textarea name="" id="" cols="30" rows="10" v-model="text"></textarea>
@@ -23,6 +22,8 @@
     <input type="radio" name="" id="" :checked="picked">
     <label for="">单选按钮</label> -->
 
+
+    <!-- 单选时内容跟随选中的内容所变化 -->
     <input type="radio" id="html" value="html" v-model="picked">
     <label for="html">HTML</label>
     <br>
@@ -33,18 +34,73 @@
     <label for="css">CSS</label>
     <br>
     <p>您的选择是：{{picked}}</p>
+
+
+
+    <!-- 复选框 -->
+    <!-- <input type="checkbox" v-model="checked" id="checked">
+    <label for="checked">选择状态：{{checked}}</label> -->
+
+    <input type="checkbox" v-model="checked" id="html" value="html">
+    <label for="html">HTML</label>
+    <br>
+    <input type="checkbox" v-model="checked" id="js" value="js">
+    <label for="js">JS </label>
+    <br>
+    <input type="checkbox" v-model="checked" id="css" value="css">
+    <label for="css">CSS </label>
+    <br>
+    <p>选择的项是：{{checked}}</p>
+
+
+
+
+    <!-- 选择列表即下拉选择器 -->
+    <!-- multiple这个属性是设置多选的 -->
+    <!-- <select name="" id="" v-model="selected" multiple>
+      <option>html</option>
+      <option value="js">javascript</option>
+      <option>css</option>
+    </select>
+    <p>选择的项是：{{selected}}</p> -->
+
+    <select name="" id="" v-model="selected">
+      <option v-for="option in options" :value="option.value">
+        {{option.text}}
+      </option>
+    </select>
+    <p>选择的项是：{{selected}}</p>
+
+
   </div>
 
 
 
-  <script src="./node_modules/vue/dist/vue.js"></script>
+  <script src="./node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
   <script>
     var app = new Vue({
       el: "#app",
       data: {
         msg: '',
         text: '',
-        picked: 'js'
+        picked: 'html',
+        // checked: false
+        checked: ['html', 'css'],
+        // selected: ['html', 'js'],
+        selected: 'html',
+        options: [{
+            text: 'HTML',
+            value: 'html'
+          },
+          {
+            text: 'Javascript',
+            value: 'js'
+          },
+          {
+            text: 'CSS',
+            value: 'css'
+          },
+        ]
       },
       methods: +{
         handleInput: function (e) {

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义事件 </title>
+</head>
+
+<body>
+  <div id="app">
+    <p>总数：{{Total}}</p>
+    <!-- <p>count={{countt}}</p> -->
+    <!-- <my-component @increase="handelGetTotal" @reduce="handelGetTotal"></my-component> -->
+
+    <!-- <my-component @input="handel"></my-component> -->
+
+    <my-component v-model="Total"></my-component>
+    <button @click="handleReduce">-1</button>
+
+
+  </div>
+  <script src="../../node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    // Vue.component("my-component", {
+    //   template: "\
+    //   <div>\
+    //     <button @click='handelIncrease'>+1</button>\
+    //     <button @click='handelReduce'>-1</button>\
+    //   </div>",
+    //   data: function () {
+    //     return {
+    //       counter: 0,
+    //       count: 0
+    //     }
+    //   },
+    //   methods: {
+    //     handelIncrease() {
+    //       this.counter++;
+    //       this.count = this.counter + 2
+    //       this.$emit("increase", this.counter, this.count)
+    //     },
+    //     handelReduce: function () {
+    //       this.counter--;
+    //       this.count = this.counter - 2;
+    //       this.$emit("reduce", this.counter, this.count)
+    //     }
+    //   }
+    // })
+
+    Vue.component("my-component", {
+      props: ["value"],
+      // template: "<button @click='handelClick'>+1</button>",
+      template: "<input :value='value' @input='updateValue'></input>",
+      data: function () {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        handelClick: function () {
+          this.counter++;
+          this.$emit("input", this.counter)
+        },
+        updateValue(event) {
+          this.$emit("input", event.target.value)
+        }
+      }
+    })
+
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        Total: 0,
+      },
+      methods: {
+        handel(Total) {
+          this.Total = Total;
+        },
+        handleReduce() {
+          this.Total--;
+        }
+      }
+    })
+
+
+
+
+
+
+    // var app = new Vue({
+    //   el: "#app",
+    //   data: {
+    //     Total: 0,
+    //     countt: 0
+    //   },
+    //   methods: {
+    //     handelGetTotal(Total, countt) {
+    //       this.Total = Total
+    //       this.countt = countt
+    //     }
+    //   }
+    // })
+  </script>
+</body>
+
+</html>

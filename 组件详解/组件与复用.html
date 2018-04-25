@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>基本模板</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- 常见的聊天界面 这个有问题暂时不知道是什么原因-->
+    <!-- <Card style="width:350px">
+      <p slot="title"> 与XXX聊天中</p>
+      <a href="#" slot="extra">
+        <Icon type="android-close" size="18"> </Icon>
+      </a>
+      <div style="height:100px"></div>
+
+      <div>
+        <Row :gutter="16">
+          <i-col span="17">
+            <i-input v-model="value" placeholder="请输入。。。"></i-input>
+          </i-col>
+          <i-col span="4">
+            <i-button type="primary" icon="paper-airplance">发送</i-button>
+          </i-col>
+        </Row>
+      </div>
+    </Card> -->
+
+    <my-component></my-component>
+    <my-component></my-component>
+    <my-component></my-component>
+
+
+    <!-- <table>
+      <tbody is="my-component">
+
+      </tbody>
+    </table> -->
+
+
+
+
+
+  </div>
+  <script src="../node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    // var data = {
+    //   counter: 0
+    // }
+    Vue.component('my-component', {
+      // template: '<div>这里是组件的内容</div>',
+      // template: '<div>{{message}}</div>',
+      template: '<div><button @click="counter++">{{counter}}</button></div>',
+      data: function () {
+        // return {
+        //   message: '组件内容'
+        // }
+        return {
+          counter: 0
+        }
+      }
+    })
+
+    // var Child = {
+    //   template: '<div>这里是组件的内容</div>'
+    // }
+    var app = new Vue({
+      el: "#app",
+      data: {},
+      // components: {
+      //   'my-component': Child
+      // }
+    })
+  </script>
+</body>
+
+</html>

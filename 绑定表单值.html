@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>绑定值</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- 单选按钮 -->
+    <input type="radio" v-model="picked" :value="value">
+    <label>单选按钮</label>
+    <p>{{picked}}</p>
+    <p>{{value}}</p>
+
+    <!-- 复选框 -->
+    <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2">
+    <label>复选框</label>
+    <p>{{toggle}}</p>
+    <p>{{value1}}</p>
+    <p>{{value2}}</p>
+
+
+    <!-- 选择列表 -->
+    <select name="" id="" v-model="selected">
+      <option :value="{number:123}">123</option>
+    </select>
+    <!--上面number里面的值就是下面会显示的值 -->
+    {{selected.number}}
+    <br>
+
+    <hr>
+    <!-- 修饰符 -->
+    <!-- 只有失焦后或者按回车才会显示内容 -->
+    <!-- <input type="text" v-model.lazy="message"> -->
+    <!-- <p>{{message}}</p> -->
+
+    <!-- 将输入的类型转换为Number -->
+    <input type="text" v-model.number="message">
+    <p>{{typeof message}}</p>
+
+
+    <!-- .trim自动过滤输入的首尾空格 -->
+    <input type="text" v-model.trim="message">
+    <p>{{message}}</p>
+
+
+  </div>
+  <script src="./node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        picked: false,
+        value: 123,
+        toggle: false,
+        value1: 'a',
+        value2: 'b',
+        selected: '',
+        message: '',
+        // message: 123
+      }
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>使用props传递数据</title>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <my-component message="来自父组件的数据"></my-component> -->
+
+
+    <!-- <my-component warning-text="提示信息"></my-component> -->
+
+    <!-- 这里用v-model绑定了父级的数据parentMessage，当通过输入框输入任意数字的时候，子组件的props ‘meaasge’也会实时响应，并更新组价模板 -->
+    <!-- <input type="text" v-model="parentMessage">
+    <my-component :message="parentMessage"></my-component> -->
+
+
+    <my-component message="[1,2,3]"></my-component>
+    <my-component :message="[1,2,3]"></my-component>
+  </div>
+
+  <script src="../node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    Vue.component('my-component', {
+      props: ['message'],
+      // props: ['warningText'],
+      // template: ' <div>{{message}}</div>'
+      template: ' <div>{{message.length}}</div>'
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        parentMessage: ''
+      }
+    })
+  </script>
+</body>
+
+</html>

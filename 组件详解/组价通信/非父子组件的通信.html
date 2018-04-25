@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    {{message}}
+    <component-a></component-a>
+  </div>
+  <script src="./../../node_modules/_vue@2.5.16@vue/dist/vue.js"></script>
+  <script>
+    var bus = new Vue();
+    Vue.component("component-a", {
+      // template: "<button @click='handleEvent'>传递事件</button>",
+      template: "<button @click='handleEvent'>通过父链直接修改数据</button>",
+      methods: {
+        // handleEvent: function () {
+        //   bus.$emit('on-message', '来自组件component-a的内容')
+        // }
+
+        handleEvent() {
+          // 访问到父链后，可以做任何操作，比如直接修改数据
+          this.$parent.message = "来自组件component-a的内容"
+        }
+      }
+    })
+
+    var app = new Vue({
+      el: "#app",
+      data: {
+        message: ''
+      }
+      // 通过bus监听的方法
+      // mounted: function () {
+      //   var that = this;
+      //   // 实例初始化的时候，监听来自bus的事件
+      //   bus.$on('on-message', function (msg) {
+      //     that.message = msg
+      //   })
+      // }
+    })
+    
+  </script>
+</body>
+
+</html>
